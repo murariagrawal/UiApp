@@ -54,7 +54,7 @@ public class OrderInitiationController {
 		return mv;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value="/fetchDeliveryDetails")
+	@RequestMapping(method = RequestMethod.POST, value="/fetchDeliveryDetails")
 	public ModelAndView fetchDeliveryDetails() {
 		System.out.println("in fetch deliverydetails controller");
 		ModelAndView mv = null;

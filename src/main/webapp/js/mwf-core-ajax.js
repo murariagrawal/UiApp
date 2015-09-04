@@ -19,9 +19,7 @@
       // Strip comments and decode JSON responses
       extractData = function(response) {
         var stripped = (response.substring(response.indexOf('%') + 1, response.lastIndexOf('%')));
-        return stripped.replace(/\\x([0-9A-Fa-f]{2})/g, function() {
-          return String.fromCharCode(parseInt(arguments[1], 16));
-        });
+        return stripped.replace(/\\x([0-9A-Fa-f]{2})/g);
       },
       // Replace String with Special Characters
       specialCharacters = function(response) {
@@ -34,7 +32,7 @@
         var deferred = $.Deferred(),
           data;
         try {
-          data = $.parseJSON(extractData(specialCharacters(result)));
+          data = $.parseJSON(specialCharacters(result));
         } catch (err) {          
           var error = buildGlobalError("Error parsing the server response.");
           deferred.rejectWith(error, [error]);
